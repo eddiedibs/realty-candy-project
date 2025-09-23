@@ -1,14 +1,16 @@
-import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
-import { type BreadcrumbItem } from '@/types';
-import { type ReactNode } from 'react';
+import React from 'react';
 
 interface AppLayoutProps {
-    children: ReactNode;
-    breadcrumbs?: BreadcrumbItem[];
+    children: React.ReactNode;
 }
 
-export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
-    <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
-        {children}
-    </AppLayoutTemplate>
-);
+const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+    return (
+        <div className="min-h-screen bg-gray-50 dark:bg-[#121212] transition-colors duration-300">
+            {/* <Navbar /> */}
+            <main className="pt-4 px-4 sm:px-6 lg:px-8">{children}</main>
+        </div>
+    );
+};
+
+export default AppLayout;
