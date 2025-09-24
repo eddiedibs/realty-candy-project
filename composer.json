@@ -67,6 +67,9 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "vercel": [
+          "npm ci && npm run build"
         ]
     },
     "extra": {
