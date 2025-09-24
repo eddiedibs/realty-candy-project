@@ -41,7 +41,7 @@ export default function MarketDetails({ market }: MarketProps) {
                 </motion.div>
             </AnimatePresence>
                 
-            <div className="flex flex-col w- p-20 gap-6 mt-24 bg-[#FDFDFC] text-[#1b1b18] dark:bg-[#121212]">
+            <div className="flex flex-col w-full p-6 sm:p-20 gap-6 mt-24 bg-[#FDFDFC] text-[#1b1b18] dark:bg-[#121212]">
                 <PropertyDetailsChartCard
                     title="Median Sale Price (trend)"
                     content="Median Price"

@@ -17,6 +17,11 @@ export default defineConfig({
             formVariants: true,
         }),
     ],
+    server: {
+        host: true, // allow external access
+        strictPort: true,
+        cors: true, // ✅ enable CORS for all origins
+    },
     esbuild: {
         jsx: 'automatic',
     },

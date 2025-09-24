@@ -2,6 +2,7 @@
 
 import { Line, LineChart, CartesianGrid, XAxis, YAxis  } from "recharts"
 import { type MarketMetricsItem } from "@/types";
+import { ResponsiveContainer } from "recharts";
 
 import { ChartConfig,
          ChartContainer,
@@ -43,67 +44,66 @@ export function PropertyDetailsChartCard({
         </div>
 
         {/* Chart */}
-        <div className="w-full h-full">
-          <ChartContainer config={chartConfig} className="h-full w-full p-6">
-            <LineChart accessibilityLayer data={data}>
-              <CartesianGrid vertical={false} stroke="#e0e0e0" dark:stroke="#3b3b4a" strokeDasharray="3 3" />
-              
-              <XAxis
-                dataKey={xAxisDataKey}
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => value.slice(0, 3)}
-                stroke="#6b7280" // default gray-500
-                className="dark:stroke-gray-400"
-              />
-              
-              <YAxis
-                dataKey={yAxisDataKey}
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => `${formatter}${value.toLocaleString()}`}
-                stroke="#6b7280"
-                className="dark:stroke-gray-400"
-              />
-              
-              <ChartTooltip
-                content={
-                  <ChartTooltipContent
-                    formatter={(value) => `${formatter}${value.toLocaleString()}`}
-                    className="dark:bg-gray-800 dark:text-gray-200"
-                  />
-                }
-                wrapperStyle={{
-                  backgroundColor: "white",
-                  color: "#111827",
-                  borderRadius: 6,
-                  padding: "0.5rem",
-                }}
-              />
-              
-              <ChartLegend
-                content={
-                  <ChartLegendContent
-                    className="dark:text-gray-200 text-gray-800"
-                  />
-                }
-              />
-
-              {lineTypes.map((key) => (
-                <Line
-                  key={key}
-                  dataKey={key}
-                  type="natural"
-                  stroke={`var(--color-${key})`}
-                  strokeWidth={2}
-                  dot={false}
+        <div className="w-full h-64 sm:h-80 md:h-full">
+          <ChartContainer config={chartConfig} className="h-full w-full p-2 sm:p-4">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart accessibilityLayer data={data}>
+                <CartesianGrid
+                  vertical={false}
+                  stroke="#e0e0e0"
+                  className="dark:stroke-gray-600"
+                  strokeDasharray="3 3"
                 />
-              ))}
-            </LineChart>
+
+                <XAxis
+                  dataKey={xAxisDataKey}
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  stroke="#6b7280"
+                  className="dark:stroke-gray-400"
+                />
+
+                <YAxis
+                  dataKey={yAxisDataKey}
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => `${formatter}${value.toLocaleString()}`}
+                  stroke="#6b7280"
+                  className="dark:stroke-gray-400"
+                />
+
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      formatter={(value) => `${formatter}${value.toLocaleString()}`}
+                      className="dark:bg-gray-800 dark:text-gray-200"
+                    />
+                  }
+                />
+
+                <ChartLegend
+                  content={
+                    <ChartLegendContent className="dark:text-gray-200 text-gray-800" />
+                  }
+                />
+
+                {lineTypes.map((key) => (
+                  <Line
+                    key={key}
+                    dataKey={key}
+                    type="natural"
+                    stroke={`var(--color-${key})`}
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
           </ChartContainer>
         </div>
+
       </div>
     </div>
   );
